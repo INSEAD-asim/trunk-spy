@@ -1,0 +1,24 @@
+<?php
+
+return array(
+    'entries' => array(
+        'project1' => array(
+            'username' => 'user',
+            'password' => 'password',
+            'svnPath' => 'https://svn.company.com/svn/project1/trunk',
+            'label' => 'Academy Trunk',
+            'storagePath' => ROOT_DIR . '/data/trunk_current.xml',
+            'storagePathTmp' => ROOT_DIR . '/data/trunk_tmp.xml',
+            'notifyRecipients' => array('root@darkstar'),
+        ),
+        'project2' => array(
+            'username' => 'user',
+            'password' => 'password',
+            'svnPath' => 'https://svn.company.com/svn/project2/trunk',
+            'label' => 'Topblip Admin Trunk',
+            'storagePath' => ROOT_DIR . '/data/trunk2_current.xml',
+            'storagePathTmp' => ROOT_DIR . '/data/trunk2_tmp.xml',
+            'notifyRecipients' => array('root@darkstar'),
+        ),
+    )
+);
