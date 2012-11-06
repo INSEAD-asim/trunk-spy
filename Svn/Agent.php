@@ -59,7 +59,7 @@ class Svn_Agent
         $command = null;
 
         if ($this->_username && $this->_password) {
-            $command = 'svn log %s --username=%s --password=%s --limit 1 --xml 2>&1 > %s';
+            $command = "svn log %s --username='%s' --password='%s' --limit 1 --xml 2>&1 > %s";
             $command = sprintf($command, $this->_svnPath, $this->_username, $this->_password, $this->_storagePathTmp);
         } else {
             $command = 'svn log %s --limit 1 --xml 2>&1 > %s';
