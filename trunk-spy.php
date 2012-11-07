@@ -11,7 +11,7 @@ function get_config()
 
 $config = get_config();
 foreach ($config['entries'] as $name => $entry) {
-    $agent = new Svn_Agent($entry);
+    $agent = new Svn_Agent($entry, $config['global']);
     $previous = $agent->getPrevious();
     $latest = $agent->getLatest();
     $updated = false;

@@ -14,12 +14,20 @@ class Svn_Agent
     protected $_storagePath;
     protected $_storagePathTmp;
     protected $_notifyRecipients;
+    protected $_subjectLine;
 
     protected $_storedRevision;
     protected $_currentRevision;
 
-    public function __construct(array $config)
+    public function __construct(array $config, array $globalConfig = array())
     {
+        // For global config
+        foreach ($globalConfig as $key => $value) {
+            $field = '_' . $key;
+            $this->{$field} = $value;
+        }
+
+        // For specific config
         foreach ($config as $key => $value) {
             $field = '_' . $key;
             $this->{$field} = $value;
@@ -96,7 +104,7 @@ class Svn_Agent
     public function notifyUsers(Svn_Revision $revision)
     {
         $to = implode(',', $this->_notifyRecipients);
-        $subject = '%s has been updated by %s';
+        $subject = $this->_subjectLine;
         $subject = sprintf($subject, $this->_label, $revision->author);
 
         $message[] = 'Details: ';
