@@ -4,6 +4,7 @@ define('ROOT_DIR', dirname(__FILE__));
 define('AGENT_ACTIVE_START_HOUR', 7);
 define('AGENT_ACTIVE_END_HOUR', 20);
 define('AGENT_ACTIVE_TIMEZONE', 'Asia/Manila');
+define('AGENT_ACTIVE_DAYS', 'Tue,Wed,Thu,Fri,Sat');
 
 require_once ROOT_DIR . '/Svn/Agent.php';
 require_once ROOT_DIR . '/Svn/Revision.php';
@@ -17,8 +18,12 @@ function is_agent_active()
 {
     $d = new DateTime('now', new DateTimeZone(AGENT_ACTIVE_TIMEZONE));
     $h = $d->format('H');
+    $day = $d->format('D');
+    $days = explode(',', AGENT_ACTIVE_DAYS);
     if ($h >= AGENT_ACTIVE_START_HOUR && $h <= AGENT_ACTIVE_END_HOUR) {
-        return true;
+        if (in_array($day, $days)) {
+            return true;
+        }
     }
     return false;
 }
