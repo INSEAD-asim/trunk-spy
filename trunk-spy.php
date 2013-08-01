@@ -1,6 +1,10 @@
 <?php
 
 define('ROOT_DIR', dirname(__FILE__));
+define('AGENT_ACTIVE_START_HOUR', 7);
+define('AGENT_ACTIVE_END_HOUR', 20);
+define('AGENT_ACTIVE_TIMEZONE', 'Asia/Manila');
+
 require_once ROOT_DIR . '/Svn/Agent.php';
 require_once ROOT_DIR . '/Svn/Revision.php';
 
@@ -9,6 +13,19 @@ function get_config()
     return include ROOT_DIR . '/config.php';
 }
 
+function is_agent_active()
+{
+    $d = new DateTime('now', new DateTimeZone(AGENT_ACTIVE_TIMEZONE));
+    $h = $d->format('H');
+    if ($h >= AGENT_ACTIVE_START_HOUR && $h <= AGENT_ACTIVE_END_HOUR) {
+        return true;
+    }
+    return false;
+}
+
+if (!is_agent_active()) {
+    exit;
+}
 $config = get_config();
 foreach ($config['entries'] as $name => $entry) {
     $agent = new Svn_Agent($entry, $config['global']);
