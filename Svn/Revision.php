@@ -1,5 +1,6 @@
 <?php
-/** 
+
+/**
  * Handles fetching svn commit log and can store them into a file
  *
  * @author Lysender
@@ -17,11 +18,11 @@ class Svn_Revision
     {
         $xml = new SimpleXMLElement($xmlString);
         foreach ($xml->children() as $entry) {
-            $attributes = $entry->attributes();
-            $this->revision = (int) $attributes['revision'];
-            $this->author = (string) $entry->author;
-            $this->date = (string) $entry->date;
-            $this->msg = (string) $entry->msg;
+            $attributes     = $entry->attributes();
+            $this->revision = (int)$attributes['revision'];
+            $this->author   = (string)$entry->author;
+            $this->date     = (string)$entry->date;
+            $this->msg      = (string)$entry->msg;
         }
 
         $this->xmlString = $xmlString;

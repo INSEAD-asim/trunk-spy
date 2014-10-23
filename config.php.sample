@@ -1,25 +1,29 @@
 <?php
+define('AGENT_ACTIVE_TIMEZONE', 'Europe/Paris');
+define('AGENT_ACTIVE_START_HOUR', 7);
+define('AGENT_ACTIVE_END_HOUR', 20);
+define('AGENT_ACTIVE_DAYS', 'Mon,Tue,Wed,Thu,Fri');
 
-return array(
-    'global' => array(
-        'subjectLine' => '[SVN Notifications] %s has been updated by %s',
-        'username' => 'user',
-        'password' => 'password'
-    ),
-    'entries' => array(
-        'project1' => array(
-            'svnPath' => 'https://svn.company.com/svn/project1/trunk',
-            'label' => 'Academy Trunk',
-            'storagePath' => ROOT_DIR . '/data/trunk_current.xml',
-            'storagePathTmp' => ROOT_DIR . '/data/trunk_tmp.xml',
-            'notifyRecipients' => array('root@darkstar'),
+function get_config($root_dir) {
+    return array(
+        'global' => array(
+            'subjectLine' => '[SVN Notifications] %s has been updated by %s',
+            'username' => 'user',
+            'password' => 'password',
+            'storagePath' => $root_dir . '/data/',
+            'svnConfigPath' => $root_dir . '/Svn/config/',
         ),
-        'project2' => array(
-            'svnPath' => 'https://svn.company.com/svn/project2/trunk',
-            'label' => 'Topblip Admin Trunk',
-            'storagePath' => ROOT_DIR . '/data/trunk2_current.xml',
-            'storagePathTmp' => ROOT_DIR . '/data/trunk2_tmp.xml',
-            'notifyRecipients' => array('root@darkstar', 'lysender@darkstar'),
-        ),
-    )
-);
+        'entries' => array(
+            'project1' => array(
+                'svnPath' => 'https://svn.company.com/svn/project1/trunk',
+                'label' => 'Academy Trunk',
+                'notifyRecipients' => array('root@darkstar'),
+            ),
+            'project2' => array(
+                'svnPath' => 'https://svn.company.com/svn/project2/trunk',
+                'label' => 'Topblip Admin Trunk',
+                'notifyRecipients' => array('root@darkstar', 'lysender@darkstar'),
+            ),
+        )
+    );
+}
