@@ -4,25 +4,39 @@ define('AGENT_ACTIVE_START_HOUR', 7);
 define('AGENT_ACTIVE_END_HOUR', 20);
 define('AGENT_ACTIVE_DAYS', 'Mon,Tue,Wed,Thu,Fri');
 
-function get_config($root_dir) {
+function get_config($root_dir)
+{
     return array(
         'global' => array(
-            'subjectLine' => '[SVN Notifications] %s has been updated by %s',
-            'username' => 'user',
-            'password' => 'password',
-            'storagePath' => $root_dir . '/data/',
-            'svnConfigPath' => $root_dir . '/Svn/config/',
+            'emailSubject'  => '[SVN Notifications] %s has been updated by %s',
+            'username'      => 'feed@insead.edu', // username without spaces
+            'password'      => 'R2GO9DOAI', // password without spaces
+            'storagePath'   => $root_dir . '/data/',
+            'svnConfigPath' => $root_dir . '/Svn/config/', // config directory without spaces
         ),
         'entries' => array(
+            // project name without spaces
             'project1' => array(
-                'svnPath' => 'https://svn.company.com/svn/project1/trunk',
-                'label' => 'Academy Trunk',
-                'notifyRecipients' => array('root@darkstar'),
+                'label'           => 'Academy Trunk',
+                'svnPath'         => 'https://svn.company.com/svn/project1/trunk',
+                'emailRecipients' => array(
+                    'root@darkstar',
+                ),
+                'postUpdate'      => array(
+                    'script'  => $root_dir . '/Command/project1/post-update.bat',
+                    'subject' => '[Unit Test Results] %s',
+                    'reports' => array(
+                        $root_dir . '/Command/project1/unit-test-detail.txt',
+                    ),
+                ),
             ),
             'project2' => array(
-                'svnPath' => 'https://svn.company.com/svn/project2/trunk',
-                'label' => 'Topblip Admin Trunk',
-                'notifyRecipients' => array('root@darkstar', 'lysender@darkstar'),
+                'label'           => 'Topblip Admin Trunk',
+                'svnPath'         => 'https://svn.company.com/svn/project2/trunk',
+                'emailRecipients' => array(
+                    'root@darkstar',
+                    'lysender@darkstar',
+                ),
             ),
         )
     );

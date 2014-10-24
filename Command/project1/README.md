@@ -1,0 +1,1 @@
+This directory can contain post update batch or bash scripts

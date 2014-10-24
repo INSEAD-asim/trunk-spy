@@ -2,6 +2,7 @@
 define('ROOT_DIR', dirname(__FILE__));
 
 require_once ROOT_DIR . '/config.php';
+require_once ROOT_DIR . '/Svn/Mail.php';
 require_once ROOT_DIR . '/Svn/Agent.php';
 require_once ROOT_DIR . '/Svn/Revision.php';
 
@@ -45,6 +46,7 @@ foreach ($config['entries'] as $name => $entry) {
         if ($updated) {
             $agent->writeLatest($latest);
             $agent->notifyUsers($latest);
+            $agent->postUpdate();
         }
     }
 }
