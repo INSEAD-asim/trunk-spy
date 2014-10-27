@@ -8,6 +8,7 @@
  */
 class Svn_Agent
 {
+    protected $_emailSender;
     protected $_emailSubject;
     protected $_username;
     protected $_password;
@@ -130,7 +131,7 @@ class Svn_Agent
         $subject = $this->_emailSubject;
         $subject = sprintf($subject, $this->_label, $revision->author);
 
-        $mail = new Mail('trunk-spy@insead.edu');
+        $mail = new Mail($this->_emailSender);
 
         $message[] = 'Details:';
         $message[] = '========';
@@ -148,7 +149,7 @@ class Svn_Agent
         $to            = implode(',', $this->_emailRecipients);
         $svnConfigPath = $this->_svnConfigPath . $this->_project;
 
-        $mail = new Mail('trunk-spy@insead.edu');
+        $mail = new Mail($this->_emailSender);
 
         if ($this->_postUpdate != null) {
             $report  = $this->_storagePath . $this->_project . '-post-update-report.txt';
