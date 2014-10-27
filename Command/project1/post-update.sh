@@ -1,3 +1,4 @@
+#!/bin/sh
 cd /path/to/project1
 svn update --config-dir="%2" --username="%3" --password="%4"
 php /path/to/project1/app/phpunit.phar^

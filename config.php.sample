@@ -9,10 +9,10 @@ function get_config($root_dir)
     return array(
         'global' => array(
             'emailSubject'  => '[SVN Notifications] %s has been updated by %s',
-            'username'      => 'feed@insead.edu', // username without spaces
-            'password'      => 'R2GO9DOAI', // password without spaces
+            'username'      => 'svn@company.com',           // username without spaces
+            'password'      => 'Pa55w0rd',                  // password without spaces
             'storagePath'   => $root_dir . '/data/',
-            'svnConfigPath' => $root_dir . '/Svn/config/', // config directory without spaces
+            'svnConfigPath' => $root_dir . '/Svn/config/',  // config directory without spaces
         ),
         'entries' => array(
             // project name without spaces
