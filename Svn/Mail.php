@@ -49,7 +49,8 @@ Content-Transfer-Encoding: 7bit
 
 <div style='font-family: consolas;'>$html</div>
 
---PHP-alt-$random_hash--";
+--PHP-alt-$random_hash--
+";
 
         foreach ($files as $file) {
             $content_type = mime_content_type($file);
@@ -62,7 +63,9 @@ Content-Transfer-Encoding: base64
 Content-Disposition: attachment
 
 $attachment
---PHP-mixed-$random_hash--";
+
+--PHP-mixed-$random_hash--
+";
         }
 
         if (mail($to, $subject, $output, $headers)) {
